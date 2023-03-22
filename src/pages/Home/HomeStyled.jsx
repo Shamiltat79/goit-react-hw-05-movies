@@ -22,3 +22,6 @@ export const MovieItem = styled.li`
         color: #b41b1b
     }
 `
+export const StyledLinks = styled(Link)`
+ text-decoration: none;   
+`

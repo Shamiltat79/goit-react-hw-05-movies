@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import { fetchTrendingMovies } from "API";
-import {Title, MoviesList, MovieItem } from "./HomeStyled";
-import css from 'pages/Home/Home.module.css';
+import {Title, MoviesList, MovieItem, StyledLinks } from "./HomeStyled";
 
-export const Home = () => {
+
+ const Home = () => {
     const [trandingMovies, settrandingMovies] = useState([]);
     const isFirstRender = useRef(true);
     const locationHome = useLocation();
@@ -20,9 +20,10 @@ export const Home = () => {
     return( <>
     <Title>Trending today</Title>
         <MoviesList>
-           {trandingMovies.map((movie) =>  <Link to={`movies/${movie.id}`} key={movie.id}  state={{from: locationHome}} className={css.searchLink} ><MovieItem>{movie.title}</MovieItem></Link>)} 
+           {trandingMovies.map((movie) =>  <StyledLinks to={`movies/${movie.id}`} key={movie.id}  state={{from: locationHome}}  ><MovieItem>{movie.title}</MovieItem></StyledLinks>)} 
         </MoviesList>
         </>
         
     )
 };
+export default Home;
