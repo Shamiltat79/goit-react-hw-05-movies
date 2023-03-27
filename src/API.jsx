@@ -14,3 +14,18 @@ export async function fetchTrendingMovies() {
     })
     return data.results;
 };
+
+export async function fetchMovies(request) {
+    if (request !== "") {
+        const {data} = await axios.get(BASE_URL, {
+            params: {
+                api_key: API_KEY,
+                query: request,
+                page: 1,
+            }
+        }
+        )
+
+        return data.results;
+    }
+}

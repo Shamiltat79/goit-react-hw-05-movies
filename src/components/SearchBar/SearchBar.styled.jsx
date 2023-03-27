@@ -20,7 +20,7 @@ top: 0;
     padding-top: 12px;
     padding-bottom: 12px;
     color: #fff;
-    background-color: #ed6b09;
+    background-color: #ff4500;
     box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
         0px 4px 5px 0px rgba(0, 0, 0, 0.14),
         0px 1px 10px 0px rgba(0, 0, 0, 0.12);
@@ -75,7 +75,6 @@ export const SearchFormInput = styled.input`
     padding-left: 4px;
     padding-right: 4px;
     &::placeholder {
-    font: inherit;
     font-size: 18px;
 }
 `

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import  PropTypes  from "prop-types";
+
 import { ImSearch } from 'react-icons/im';
 import { SearchBarWrapper } from "./SearchBar.styled";
 import { SearchForm } from "./SearchBar.styled";
@@ -10,15 +10,16 @@ import { SearchFormButton } from "./SearchBar.styled";
 const SearchBar = ({onSubmit}) => {
 
 const [request, setrequest] = useState('');
-const handleChange = (event) => {
-    setrequest(event.target.value.toLowercase());
-}
+
+// const handleChange = (event) => {
+//     setrequest(event.target.value.toLowercase());
+// }
 
 const handleSubmit = (event) => {
 event.preventDefault();
-if(request.trim() === ''){
-toast.warning("Please, enter search movie!")
-}
+
+onSubmit(request);
+setrequest('');
 }
     return(
         <SearchBarWrapper>
@@ -27,19 +28,23 @@ toast.warning("Please, enter search movie!")
                 <SearchFormInput 
                 type="text" 
                 autoComplete="off"
-                autoFocus disabled = {false}
-                placeholder="Searh movie..."
+                autoFocus 
+                placeholder="Searсh movie..."
                 name="request"
                 value={request}
-                onChange={handleChange}
+                onChange={(event) => setrequest(event.target.value.toLowerCase())}
 
                 />
                 <SearchFormButton><ImSearch/></SearchFormButton>
             </SearchForm>
-            <ToastContainer
-             theme="colored"/>
+            
         </SearchBarWrapper>
         
     );
 }
+
+SearchBar.propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+}
  export default SearchBar;
+
