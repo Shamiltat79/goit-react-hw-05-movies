@@ -23,7 +23,7 @@ const Cast = () => {
             } catch (error) {
                console.log(error) 
             }
-            
+           isFirstRender.current = false; 
         }
         
         getCast();

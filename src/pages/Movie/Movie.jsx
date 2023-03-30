@@ -20,7 +20,7 @@ const Movie = () => {
                 setGenre(data.genres.map(genre => genre.name + ""))
                 
             })
-            
+            isFirstRender.current = false;
         }
       
       }

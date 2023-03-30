@@ -15,7 +15,7 @@ const [movies, setMovies] = useState([]);
 const [searchParams, setSearchParams] = useSearchParams();
 const query = searchParams.get('request') ?? "";
 // const location = useLocation();
-const isFirstRender = useRef(false);
+const isFirstRender = useRef(true);
 
 
 const searchSubmit = (request) => {
@@ -40,7 +40,7 @@ useEffect(() => {
     }
 
     gethMovies();
-    isFirstRender.current = true;
+    isFirstRender.current = false;
 }, [query]);
 
 
