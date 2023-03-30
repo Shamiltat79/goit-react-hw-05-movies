@@ -1,21 +1,23 @@
 import { useState, useRef, useEffect} from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import SearchBar from "components/SearchBar/SearchBar";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 import { fetchMovies } from "API";
-import { MoviesList, MovieItems, MovieLink  } from "./MoviesStyled";
-
+import { MoviesList } from "./MoviesStyled";
+import MovieItem from "./MovieItem";
 
 
 const Movies = () => {
 
-const [movies, setmovies] = useState([]);
+const [movies, setMovies] = useState([]);
 const [searchParams, setSearchParams] = useSearchParams();
-const movie = searchParams.get('request') ?? "";
-const location = useLocation();
+const query = searchParams.get('request') ?? "";
+// const location = useLocation();
 const isFirstRender = useRef(false);
+
+
 const searchSubmit = (request) => {
 if(request.trim() === ''){
     toast.warning("Please, enter search movie!")
@@ -25,20 +27,28 @@ if(request.trim() === ''){
 }
 
 useEffect(() => {
-  if(movie){
-   fetchMovies(movie)
-   .then(data => setmovies(data));  
-  }
-isFirstRender.current = true;
- 
-}, [movie]);
+  if(!query){
+    return;
+}
+    async function gethMovies(){
+        try {
+         const {data}= await fetchMovies(query);
+         setMovies(data.results);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
+    gethMovies();
+    isFirstRender.current = true;
+}, [query]);
 
+console.log(movies);
 
     return (<>
         <SearchBar onSubmit={searchSubmit}/>
 <MoviesList>
-    {movies.map((movie) => <MovieLink to={`${movie.id}`} key={movie.id} state={{from: location}}><MovieItems>{movie.title}</MovieItems></MovieLink>)}
+    <MovieItem movies={movies}/>
 </MoviesList>
         <ToastContainer
              theme="colored"/>

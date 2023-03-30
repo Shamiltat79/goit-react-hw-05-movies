@@ -9,18 +9,23 @@ import { SearchFormButton } from "./SearchBar.styled";
 
 const SearchBar = ({onSubmit}) => {
 
-const [request, setrequest] = useState('');
+const [request, setRequest] = useState('');
 
-// const handleChange = (event) => {
-//     setrequest(event.target.value.toLowercase());
-// }
+const handleChange = (event) => {
+    const {value} = event.target;
+    setRequest(value.toLowerCase());
+}
 
 const handleSubmit = (event) => {
 event.preventDefault();
 
 onSubmit(request);
-setrequest('');
-}
+reset();
+}   
+
+function reset() {
+    setRequest('');
+};
     return(
         <SearchBarWrapper>
 
@@ -32,7 +37,7 @@ setrequest('');
                 placeholder="Searсh movie..."
                 name="request"
                 value={request}
-                onChange={(event) => setrequest(event.target.value.toLowerCase())}
+                onChange={handleChange}
 
                 />
                 <SearchFormButton><ImSearch/></SearchFormButton>
