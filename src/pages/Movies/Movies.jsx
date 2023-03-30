@@ -43,7 +43,7 @@ useEffect(() => {
     isFirstRender.current = true;
 }, [query]);
 
-console.log(movies);
+
 
     return (<>
         <SearchBar onSubmit={searchSubmit}/>

@@ -18,8 +18,7 @@ const Movie = () => {
             .then(data => {
                 setMovie(data);
                 setGenre(data.genres.map(genre => genre.name + ""))
-                console.log(data);
-                console.log(data.genres);
+                
             })
             
         }

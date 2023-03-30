@@ -54,3 +54,13 @@ export async function fetchMovie (id) {
         })
         return response;
     }
+
+    export async function fetchReviews(id){
+        const response = await axios.get(`${MOVIE_URL}${id}/reviews`, {
+            params: {
+                api_key: API_KEY,           
+        }
+        })
+        return response;
+
+    }

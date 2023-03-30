@@ -19,14 +19,16 @@ const Cast = () => {
             try {
                 const {data} = await fetchCast(id) 
                 setCast(data.cast)
+                 
             } catch (error) {
                console.log(error) 
             }
+            
         }
         
         getCast();
 
-        
+       
     } 
     
     }, [id])
