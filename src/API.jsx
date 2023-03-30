@@ -43,3 +43,14 @@ export async function fetchMovie (id) {
         return response.data;
         
     };
+
+    export async function fetchCast (id) {
+        const response = await axios.get(`${MOVIE_URL}${id}/credits`, {
+            params: {
+                api_key: API_KEY,
+               
+            
+        }
+        })
+        return response;
+    }

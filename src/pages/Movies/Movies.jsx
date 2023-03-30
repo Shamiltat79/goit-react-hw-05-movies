@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { fetchMovies } from "API";
 import { MoviesList } from "./MoviesStyled";
-import MovieItem from "./MovieItem";
+import MovieItem from "../../components/MovieItem/MovieItem";
 
 
 const Movies = () => {
