@@ -1,16 +1,15 @@
 import { fetchReviews } from "API";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, } from "react";
 import { useParams } from "react-router-dom";
 import { ReviewsList, ReviewsItem } from "./ReviewsStyled";
 
 const Reviews = () => {
     const [reviews, setReviews] = useState([]);
     const {id} = useParams();
-    const isFirstRender = useRef(true);
-
+    
     useEffect(() => {
       async function getReviews() {
-        if(isFirstRender.current){
+        
             try {
                 const {data} = await fetchReviews(id)
                 setReviews(data.results)
@@ -20,10 +19,10 @@ const Reviews = () => {
                console.log(error) 
             }
     
-            isFirstRender.current = false; 
+            
         }
         
-      }
+      
     
       getReviews();
     }, [id])

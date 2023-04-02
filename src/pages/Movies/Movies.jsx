@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect} from "react";
+import { useState, useEffect} from "react";
 import { useSearchParams } from "react-router-dom";
 import SearchBar from "components/SearchBar/SearchBar";
 import { ToastContainer, toast } from "react-toastify";
@@ -15,7 +15,7 @@ const [movies, setMovies] = useState([]);
 const [searchParams, setSearchParams] = useSearchParams();
 const query = searchParams.get('request') ?? "";
 // const location = useLocation();
-const isFirstRender = useRef(true);
+
 
 
 const searchSubmit = (request) => {
@@ -40,7 +40,7 @@ useEffect(() => {
     }
 
     gethMovies();
-    isFirstRender.current = false;
+    
 }, [query]);
 
 

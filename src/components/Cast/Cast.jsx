@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { fetchCast  } from "API";
@@ -10,10 +10,10 @@ const IMG_URL = 'https://image.tmdb.org/t/p/w200';
 const Cast = () => {
     const [cast, setCast] = useState([]);
     const {id} = useParams();
-    const isFirstRender = useRef(true);
+   
 
     useEffect(() => {
-    if(isFirstRender.current) {
+     
 
         async function getCast() {
             try {
@@ -23,13 +23,13 @@ const Cast = () => {
             } catch (error) {
                console.log(error) 
             }
-           isFirstRender.current = false; 
+           
         }
         
         getCast();
 
        
-    } 
+    
     
     }, [id])
     

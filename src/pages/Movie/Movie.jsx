@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, Suspense,  } from "react";
+import { useState, useEffect, Suspense,  } from "react";
 import { useLocation, useParams, Outlet, NavLink } from "react-router-dom";
 import {FaArrowAltCircleLeft} from 'react-icons/fa';
 
@@ -8,20 +8,20 @@ import { Wrapper, Poster, Info, GoBackLink } from "./MovieStyled";
 const Movie = () => {
     const [movie, setMovie] = useState({});
     const [genres, setGenre] = useState('');
-    const isFirstRender = useRef(true);
+    
     const location = useLocation();
     const { id } = useParams();
 
     useEffect(() => {
-        if (isFirstRender.current){
+        
             fetchMovie(id)
             .then(data => {
                 setMovie(data);
                 setGenre(data.genres.map(genre => genre.name + ""))
                 
             })
-            isFirstRender.current = false;
-        }
+            
+        
       
       }
     
